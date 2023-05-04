@@ -9,8 +9,10 @@ import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 import { useColorScheme } from "react-native";
 
-import store from "./redux/store";
+import store, { storePersist } from "./redux/store";
+import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from "react-redux";
+import { useHealthKit } from "../utils/appleHealthKitUtil";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -45,17 +47,24 @@ export default function RootLayout() {
 function RootLayoutNav() {
   const colorScheme = useColorScheme();
 
+  // apple health kit init
+  useEffect(() => {
+    useHealthKit.init();
+  });
+
   return (
     <>
       <Provider store={store}>
-        <ThemeProvider
-          value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
-        >
-          <Stack>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="modal" options={{ presentation: "modal" }} />
-          </Stack>
-        </ThemeProvider>
+        <PersistGate loading={null} persistor={storePersist}>
+          <ThemeProvider
+            value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+          >
+            <Stack>
+              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+              <Stack.Screen name="modal" options={{ presentation: "formSheet" }} />
+            </Stack>
+          </ThemeProvider>
+        </PersistGate>
       </Provider>
     </>
   );

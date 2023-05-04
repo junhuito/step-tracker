@@ -1,5 +1,5 @@
 import { SET_WEATHER_DATA, SET_WEATHER_ERROR } from '../actions';
-import { IWeatherAction, IWeatherData, IWeatherReducer, IWeatherError } from '../../interfaces/weather';
+import { IWeatherAction, IWeatherData, IWeatherReducer, IWeatherError } from '../../interfaces/weatherInterface';
 
 const initialState: IWeatherReducer = {
     data: {} as IWeatherData,
@@ -13,6 +13,7 @@ const initialState: IWeatherReducer = {
 export const weatherReducer = (state = initialState, action: IWeatherAction) => {
     switch(action.type) {
         case SET_WEATHER_DATA:
+            console.log(action.payload);
             return {
                 ...state,
                 data: action.payload

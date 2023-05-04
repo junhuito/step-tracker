@@ -1,3 +1,8 @@
+import { ImageSourcePropType } from "react-native";
+import cloudy from "../assets/images/weather/cloudy.png";
+import drizzle from "../assets/images/weather/drizzle.png";
+import sun from "../assets/images/weather/sun.png";
+
 export enum WeatherCode {
   CLEAR_SKY = 0,
   MAINLY_CLEAR = 1,
@@ -89,5 +94,35 @@ export function getWeatherCondition(weatherCode: number): string {
       return "Thunderstorm with heavy hail";
     default:
       return "Unknown";
+  }
+}
+
+export function getWeatherIcon(weatherCode: number): ImageSourcePropType {
+  switch (weatherCode) {
+    case WeatherCode.CLEAR_SKY:
+    case WeatherCode.MAINLY_CLEAR:
+    case WeatherCode.OVERCAST:
+      return sun;
+    case WeatherCode.PARTLY_CLOUDY:
+    case WeatherCode.FOG:
+    case WeatherCode.DEPOSITING_RIME_FOG:
+      return cloudy;
+    case WeatherCode.DRIZZLE_LIGHT:
+    case WeatherCode.DRIZZLE_MODERATE:
+    case WeatherCode.DRIZZLE_DENSE:
+    case WeatherCode.FREEZING_DRIZZLE_LIGHT:
+    case WeatherCode.FREEZING_DRIZZLE_DENSE:
+    case WeatherCode.RAIN_SLIGHT:
+    case WeatherCode.RAIN_MODERATE:
+    case WeatherCode.RAIN_HEAVY:
+    case WeatherCode.RAIN_SHOWERS_SLIGHT:
+    case WeatherCode.RAIN_SHOWERS_MODERATE:
+    case WeatherCode.RAIN_SHOWERS_VIOLENT:
+    case WeatherCode.THUNDERSTORM_SLIGHT:
+    case WeatherCode.THUNDERSTORM_WITH_SLIGHT_HAIL:
+    case WeatherCode.THUNDERSTORM_WITH_HEAVY_HAIL:
+      return drizzle;
+    default:
+      return sun;
   }
 }

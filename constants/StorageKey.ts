@@ -1,0 +1,1 @@
+export const STEP_GOAL_HISTORY: string = "STEP_GOAL_HISTORY";

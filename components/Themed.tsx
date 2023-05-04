@@ -42,3 +42,22 @@ export function View(props: ViewProps) {
 
   return <DefaultView style={[{ backgroundColor }, style]} {...otherProps} />;
 }
+
+interface SpacerProps {
+  small?: boolean;
+  medium?: boolean;
+  large?: boolean;
+  height?: number;
+}
+
+export function Spacer(props: SpacerProps) {
+  const { small, medium, large, height } = props;
+
+  const defaultHeight = 10;
+
+  const spacerHeight = small ? 20 : medium ? 30 : large ? 40 : defaultHeight;
+
+  const useHeight = height ?? spacerHeight;
+
+  return <View style={{ height: useHeight, backgroundColor: 'transparent' }} />;
+}

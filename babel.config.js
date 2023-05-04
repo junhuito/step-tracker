@@ -4,6 +4,16 @@ module.exports = function (api) {
     presets: ["babel-preset-expo"],
     plugins: [
       require.resolve("expo-router/babel"),
+      [
+        'module-resolver',
+        {
+          alias: {
+            "component": "./components/Themed.tsx",
+            "@assets": "./assets/images/weather/*.png",
+          },
+        },
+    ],
+      
     ],
   };
 };

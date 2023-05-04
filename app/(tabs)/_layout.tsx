@@ -28,36 +28,28 @@ export default function TabLayout() {
           title: 'Weather',
           tabBarIcon: ({ color }:any) => <TabBarIcon name="cloud" color={color} />,
           headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="info-circle"
-                    size={25}
-                    color={Colors[colorScheme ?? 'light'].text}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
+            // <Link href="/modal" asChild>
+            //   <Pressable>
+            //     {({ pressed }) => (
+            //       <FontAwesome
+            //         name="info-circle"
+            //         size={25}
+            //         color={Colors[colorScheme ?? 'light'].text}
+            //         style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
+            //       />
+            //     )}
+            //   </Pressable>
+            // </Link>
+            <></>
           ),
         }}
       />
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }:any) => <TabBarIcon name="home" color={color} />,
-          headerRight: () => (
-            <></>
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="tracker"
-        options={{
           title: 'Step Tracker',
           tabBarIcon: ({ color }:any) => <TabBarIcon name="location-arrow" color={color} />,
+          headerRight: () => (<></>),
         }}
       />
     </Tabs>

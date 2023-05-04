@@ -1,4 +1,4 @@
-import { IWeatherData, IWeatherError } from '../../interfaces/weather';
+import { IWeatherData, IWeatherError } from '../../interfaces/weatherInterface';
 
 export const FETCH_WEATHER = "FETCH_WEATHER";
 export const SET_WEATHER_DATA = "SET_WEATHER_DATA";

@@ -2,15 +2,16 @@ import { call, put, takeEvery } from 'redux-saga/effects'
 import { FETCH_WEATHER, setWeatherDataAction, setWeatherErrorAction } from '../actions';
 import { ApiService } from '../../service/apiservice';
 import { AxiosResponse } from 'axios';
-import { IWeatherData, IWeatherResponseData } from '../../interfaces/weather';
-import { getWeatherCondition } from '../../../utils/WeatherCodeUtil';
+import { IWeatherData, IWeatherResponseData } from '../../interfaces/weatherInterface';
+import { getWeatherCondition } from '../../../utils/weatherCodeUtil';
+import { Location, ILocation } from '../../../utils/geolocationUtil'; 
 
-const weatherURL = "https://api.open-meteo.com/v1/forecast?latitude=3.14&longitude=101.69&current_weather=true";
 
 function* fetchWeather() {
   try {
+    const { latitude, longitude }:ILocation  = yield call(Location.getCurrentLocation);
 
-    // todo: get current location
+    const weatherURL = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`;
 
     const { data  }: AxiosResponse<IWeatherResponseData> = yield call(ApiService.get, weatherURL);
 

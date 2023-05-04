@@ -1,1 +1,2 @@
-export * from './WeatherCodeUtil';
+export * from './weatherCodeUtil';
+export * from './geolocationUtil';
